@@ -22,8 +22,9 @@ def main():
                 running = False
 
             elif event.type == pygame.MOUSEBUTTONUP:
-                x, y = pygame.mouse.get_pos()
-                weak_tower.draw(surface, x, y)
+                if event.button == 1:
+                    x, y = pygame.mouse.get_pos()
+                    weak_tower.draw(surface, x, y)
 
         pygame.display.flip()
 
