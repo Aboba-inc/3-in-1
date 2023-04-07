@@ -13,14 +13,18 @@ def main():
     surface.fill(background)
     running = True
 
+    weak_tower = towers.WeakTower()
+
     while running:
         for event in pygame.event.get():
+
             if event.type == pygame.QUIT:
                 running = False
 
-        surface.fill(background)
-        weak_tower = towers.WeakTower()
-        weak_tower.draw(surface, 100, 200)
+            elif event.type == pygame.MOUSEBUTTONUP:
+                x, y = pygame.mouse.get_pos()
+                weak_tower.draw(surface, x, y)
+
         pygame.display.flip()
 
 
