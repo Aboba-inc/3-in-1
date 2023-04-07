@@ -1,15 +1,27 @@
 import pygame
-import sys
+import towers
+
 
 def main():
-    (width, height) = (300, 200)
-    screen = pygame.display.set_mode((width, height))
-    pygame.display.flip()
-    while True:
+    background = (0, 0, 0)
+    (width, height) = (900, 800)
+
+    pygame.init()
+    pygame.display.set_caption("Tower Defense")
+    surface = pygame.display.set_mode((width, height))
+
+    surface.fill(background)
+    running = True
+
+    while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                running = False
+
+        surface.fill(background)
+        weak_tower = towers.WeakTower()
+        weak_tower.draw(surface, 100, 200)
+        pygame.display.flip()
 
 
 if __name__ == "__main__":
