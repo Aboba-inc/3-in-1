@@ -12,6 +12,8 @@ class Tower:
     is_drawn = False
 
     def set_rect(self, x, y):
+        x -= self.width / 2
+        y -= self.height / 2
         self.rect = pygame.Rect(x, y, self.width, self.height)
 
     def draw(self, surface, x, y):
