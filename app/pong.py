@@ -14,10 +14,10 @@ def pong():
 
     # Paddles
 
-    player = pygame.Rect(0, 0, 10, 100)
+    player = pygame.Rect(0, 0, 15, 100)
     player.center = (WIDTH - 100, HEIGHT / 2)
 
-    opponent = pygame.Rect(0, 0, 10, 100)
+    opponent = pygame.Rect(0, 0, 15, 100)
     opponent.center = (100, HEIGHT / 2)
 
     player_score, opponent_score = 0, 0
@@ -63,9 +63,9 @@ def pong():
                                                                                    opponent.bottom + ball.width):
             x_speed = 1
 
-        player_score_text = FONT.render(str(player_score), True, "white")
-        opponent_score_text = FONT.render(str(opponent_score), True, "white")
-        separator_score_text = FONT.render(str(":"), True, "white")
+        player_score_text = FONT.render(str(player_score), True, "#E9C46A")
+        opponent_score_text = FONT.render(str(opponent_score), True, "#E9C46A")
+        separator_score_text = FONT.render(str(":"), True, "#E9C46A")
 
         if opponent.y < ball.y:
             opponent.top += 2
@@ -75,11 +75,11 @@ def pong():
         ball.x += x_speed * 2
         ball.y += y_speed * 2
 
-        SCREEN.fill("Black")
+        SCREEN.fill("#264653")
 
-        pygame.draw.rect(SCREEN, "white", player)
-        pygame.draw.rect(SCREEN, "white", opponent)
-        pygame.draw.circle(SCREEN, "white", ball.center, 10)
+        pygame.draw.rect(SCREEN, "#E9C46A", player)
+        pygame.draw.rect(SCREEN, "#E9C46A", opponent)
+        pygame.draw.circle(SCREEN, "#E76F51", ball.center, 10)
 
         SCREEN.blit(player_score_text, (WIDTH / 2 + 50, 50))
         SCREEN.blit(separator_score_text, (WIDTH / 2, 50))
