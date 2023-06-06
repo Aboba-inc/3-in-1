@@ -5,7 +5,7 @@ background = (0, 0, 0)
 
 pygame.init()
 screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Monopoly")
+pygame.display.set_caption("3in1")
 
 running = True
 while running:
