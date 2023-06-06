@@ -260,4 +260,11 @@ for i in range(grid_size):
 pygame.display.update()
 
 time.sleep(0.5)
-TicTacToe(grid_size, grid_size, grid_size).play_game(player1, player2)
+
+
+def tic_tac_toe():
+    TicTacToe(grid_size, grid_size, grid_size).play_game(player1, player2)
+
+
+if __name__ == "__main__":
+    tic_tac_toe()
