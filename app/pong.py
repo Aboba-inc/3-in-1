@@ -64,11 +64,12 @@ while True:
 
     player_score_text = FONT.render(str(player_score), True, "white")
     opponent_score_text = FONT.render(str(opponent_score), True, "white")
+    separator_score_text = FONT.render(str(":"), True, "white")
 
     if opponent.y < ball.y:
-        opponent.top += 1
+        opponent.top += 2
     if opponent.bottom > ball.y:
-        opponent.bottom -= 1
+        opponent.bottom -= 2
 
     ball.x += x_speed * 2
     ball.y += y_speed * 2
@@ -80,7 +81,7 @@ while True:
     pygame.draw.circle(SCREEN, "white", ball.center, 10)
 
     SCREEN.blit(player_score_text, (WIDTH / 2 + 50, 50))
-    SCREEN.blit(player_score_text, (WIDTH / 2 + 50, 50))
+    SCREEN.blit(separator_score_text, (WIDTH / 2, 50))
     SCREEN.blit(opponent_score_text, (WIDTH / 2 - 50, 50))
 
     pygame.display.update()
