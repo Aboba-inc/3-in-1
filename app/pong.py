@@ -1,5 +1,8 @@
 import pygame, sys, random
 
+pygame.mixer.init()
+pong_sound = pygame.mixer.Sound(f'assets/music/pickupCoin.wav')
+
 def pong():
     pygame.init()
 
@@ -41,7 +44,7 @@ def pong():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
+                # pygame.quit()
                 sys.exit()
 
         if ball.y >= HEIGHT:
@@ -59,9 +62,12 @@ def pong():
         if player.x - ball.width <= ball.x <= player.right and ball.y in range(player.top - ball.width,
                                                                                player.bottom + ball.width):
             x_speed = -1
+            pong_sound.play()
+
         if opponent.x - ball.width <= ball.x <= opponent.right and ball.y in range(opponent.top - ball.width,
                                                                                    opponent.bottom + ball.width):
             x_speed = 1
+            pong_sound.play()
 
         player_score_text = FONT.render(str(player_score), True, "#E9C46A")
         opponent_score_text = FONT.render(str(opponent_score), True, "#E9C46A")

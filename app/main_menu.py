@@ -11,7 +11,12 @@ pygame.display.set_caption("3 IN 1")
 icon = pygame.image.load('assets/icons/menu.png')
 pygame.display.set_icon(icon)
 
+menu_sound = pygame.mixer.Sound(f'assets/music/Mega Man X3 - Ending.mp3')
+pacman_sound = pygame.mixer.Sound(f'assets/music/Pac-man theme remix - By Arsenic1987.mp3')
+
 BG = pygame.image.load("assets/backgrounds/3.png")
+
+pygame.mixer.init()
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/fonts/PressStart2P-Regular.ttf", size)
@@ -51,6 +56,8 @@ def play():
                 if TIC_TAC_TOE_BUTTON.checkForInput(PLAY_MOUSE_POS):
                     tic_tac_toe()
                 if PACMAN_BUTTON.checkForInput(PLAY_MOUSE_POS):
+                    menu_sound.stop()
+                    pacman_sound.play()
                     pacman()
                 if BACK_BUTTON.checkForInput(PLAY_MOUSE_POS):
                     main_menu()
@@ -58,6 +65,10 @@ def play():
         pygame.display.update()
 
 def main_menu():
+    menu_sound.play()
+    # pygame.mixer.music.load(f'assets/music/Mega Man X3 - Ending.mp3')
+    # pygame.mixer.music.play(-1)
+
     while True:
         SCREEN.blit(BG, (0, 0))
 
