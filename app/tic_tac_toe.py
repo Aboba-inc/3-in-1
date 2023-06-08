@@ -14,12 +14,15 @@ a = grid_size
 cross = pygame.image.load('assets/tic_tac_toe/x.png')
 cross = pygame.transform.scale(cross, (int((2 / 3) * res), int((2 / 3) * res)))
 circle = pygame.image.load('assets/tic_tac_toe/o.png')
-circle = pygame.transform.scale(circle, (int((2 / 3) * res), int((2 / 3) * res)))
+circle = pygame.transform.scale(
+    circle, (int((2 / 3) * res), int((2 / 3) * res)))
 screen = pygame.display.set_mode((a * res, a * res))
 GameState = namedtuple('GameState', 'to_move, utility, board, moves')
 
 # _______________________________________________________________
 # MINMAX
+
+
 def minmax_search(state, game):
     player = game.to_move(state)
 
@@ -123,16 +126,15 @@ class Game:
     def play_game(self, *players):
         state = self.initial
         run = True
-        # for event in pygame.event.get():
-        #         if event.type == pygame.QUIT:
-        #             run = False
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
         while run:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     return
-                    # run = False
-                    # pygame.quit()
+
                 if event.type == pygame.MOUSEBUTTONUP:
                     pass
             pygame.display.update()
@@ -145,15 +147,15 @@ class Game:
                     while run2:
                         for event in pygame.event.get():
                             if event.type == pygame.QUIT:
-                                run2 = False
-                                run = False
+                                return
                             if event.type == pygame.MOUSEBUTTONUP:
                                 pos = pygame.mouse.get_pos()
                                 i = int(pos[0] / res)
                                 j = int(pos[1] / res)
                                 print(pos)
                                 print(i, j)
-                                coord = ((i * res + (1 / 6) * res), (j * res + (1 / 6) * res))
+                                coord = ((i * res + (1 / 6) * res),
+                                         (j * res + (1 / 6) * res))
                                 print(coord)
                                 move = (j + 1, i + 1)
                                 run2 = False
@@ -196,7 +198,8 @@ class TicTacToe(Game):
         moves = list(state.moves)
         moves.remove(move)
         return GameState(to_move=('O' if state.to_move == 'X' else 'X'),
-                         utility=self.compute_utility(board, move, state.to_move),
+                         utility=self.compute_utility(
+                             board, move, state.to_move),
                          board=board, moves=moves)
 
     def utility(self, state, player):
@@ -241,11 +244,10 @@ def text_format(message, textFont, textSize, textColor):
     newText = newFont.render(message, 0, textColor)
     return newText
 
+
 def tic_tac_toe():
     pygame.init()
 
-    # font = "assets/fonts/Retro.ttf"
-    # screen = pygame.display.set_mode((800, 684))
     pygame.display.set_caption('Tic-Tac-Toe')
     icon = pygame.image.load('assets/icons/tictac.png')
     pygame.display.set_icon(icon)
@@ -264,7 +266,7 @@ def tic_tac_toe():
         for j in range(grid_size):
             screen.blit(square, (i * res, j * res))
     pygame.display.update()
-    
+
     time.sleep(0.5)
 
     TicTacToe(grid_size, grid_size, grid_size).play_game(player1, player2)

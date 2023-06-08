@@ -2,15 +2,13 @@ import pygame
 import sys
 import os
 from button import Button
-# from pacman import pacman
-# from pong import pong
-# from tic_tac_toe import tic_tac_toe
 
 os.environ['SDL_VIDEO_CENTERED'] = '0'
 pygame.init()
 
 BG = pygame.image.load("assets/backgrounds/3.png")
 SCREEN = pygame.display.set_mode((900, 680))
+
 
 def get_font(size):  # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/fonts/PressStart2P-Regular.ttf", size)
@@ -47,18 +45,12 @@ def play():
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PONG_BUTTON.checkForInput(PLAY_MOUSE_POS):
-                    # pong()
                     return 1
                 if TIC_TAC_TOE_BUTTON.checkForInput(PLAY_MOUSE_POS):
-                    # tic_tac_toe()
                     return 2
                 if PACMAN_BUTTON.checkForInput(PLAY_MOUSE_POS):
-                    # menu_sound.stop()
-                    # pacman_sound.play(loops=1)
-                    # pacman()
                     return 3
                 if BACK_BUTTON.checkForInput(PLAY_MOUSE_POS):
-                    # main_menu()
                     return 4
 
         pygame.display.update()
@@ -66,9 +58,6 @@ def play():
 
 def main_menu():
     SCREEN = pygame.display.set_mode((900, 680))
-
-    # pygame.mixer.music.load(f'assets/music/Mega Man X3 - Ending.mp3')
-    # pygame.mixer.music.play(-1)
 
     while True:
         SCREEN.blit(BG, (0, 0))
@@ -103,6 +92,3 @@ def main_menu():
                     sys.exit()
 
         pygame.display.update()
-
-
-# main_menu()

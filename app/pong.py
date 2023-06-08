@@ -1,11 +1,15 @@
-import pygame, sys, random
+import pygame
+import sys
+import random
 import os
+import time
 
 os.environ['SDL_VIDEO_CENTERED'] = '0'
 
 pygame.mixer.init()
 pong_sound = pygame.mixer.Sound(f'assets/music/pong.wav')
 wall_sound = pygame.mixer.Sound(f'assets/music/wall.wav')
+
 
 def pong():
     pygame.init()
@@ -49,8 +53,6 @@ def pong():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-                # pygame.quit()
-                # sys.exit()
 
         if ball.y >= HEIGHT:
             y_speed = -1
@@ -60,10 +62,27 @@ def pong():
             wall_sound.play()
         if ball.x <= 0:
             player_score += 1
+            if player_score >= 10:
+                SCREEN.fill("black")
+                WIN_TEXT = pygame.font.Font("assets/fonts/PressStart2P-Regular.ttf", 80).render("YOU WIN!!!", True, "White")
+                WIN_RECT = WIN_TEXT.get_rect(center=(1280/2, 700/2))
+                SCREEN.blit(WIN_TEXT, WIN_RECT)
+                pygame.display.update()
+                time.sleep(3)
+                return
+
             ball.center = (WIDTH / 2, HEIGHT / 2)
             x_speed, y_speed = random.choice([1, -1]), random.choice([1, -1])
         if ball.x >= WIDTH:
             opponent_score += 1
+            if opponent_score >= 10:
+                SCREEN.fill("black")
+                WIN_TEXT = pygame.font.Font("assets/fonts/PressStart2P-Regular.ttf", 80).render("GAME OVER", True, "White")
+                WIN_RECT = WIN_TEXT.get_rect(center=(1280/2, 700/2))
+                SCREEN.blit(WIN_TEXT, WIN_RECT)
+                pygame.display.update()
+                time.sleep(3)
+                return
             ball.center = (WIDTH / 2, HEIGHT / 2)
             x_speed, y_speed = random.choice([1, -1]), random.choice([1, -1])
         if player.x - ball.width <= ball.x <= player.right and ball.y in range(player.top - ball.width,

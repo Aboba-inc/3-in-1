@@ -1145,8 +1145,7 @@ def pacman():
             score += (2 ** eaten_ghost.count(True)) * 100
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:                
-                # run = False
+            if event.type == pygame.QUIT:
                 return
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
@@ -1223,7 +1222,7 @@ def pacman():
             clyde_dead = False
 
         pygame.display.flip()
-    pygame.quit()
+    return
 
 
     # sound effects, restart and winning messages
