@@ -1,7 +1,11 @@
 import pygame, sys, random
+import os
+
+os.environ['SDL_VIDEO_CENTERED'] = '0'
 
 pygame.mixer.init()
-pong_sound = pygame.mixer.Sound(f'assets/music/pickupCoin.wav')
+pong_sound = pygame.mixer.Sound(f'assets/music/pong.wav')
+wall_sound = pygame.mixer.Sound(f'assets/music/wall.wav')
 
 def pong():
     pygame.init()
@@ -44,13 +48,16 @@ def pong():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                return
                 # pygame.quit()
-                sys.exit()
+                # sys.exit()
 
         if ball.y >= HEIGHT:
             y_speed = -1
+            wall_sound.play()
         if ball.y <= 0:
             y_speed = 1
+            wall_sound.play()
         if ball.x <= 0:
             player_score += 1
             ball.center = (WIDTH / 2, HEIGHT / 2)

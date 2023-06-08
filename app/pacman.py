@@ -2,7 +2,10 @@
 import copy
 from board import boards
 import pygame
+import os
 import math
+
+os.environ['SDL_VIDEO_CENTERED'] = '0'
 
 def pacman():
 
@@ -1142,8 +1145,9 @@ def pacman():
             score += (2 ** eaten_ghost.count(True)) * 100
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
+            if event.type == pygame.QUIT:                
+                # run = False
+                return
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     direction_command = 0

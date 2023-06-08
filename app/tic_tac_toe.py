@@ -2,19 +2,21 @@ import pygame
 import random
 import math
 import time
+import os
 from collections import namedtuple
 
-pygame.init()
-font = "assets/fonts/Retro.ttf"
-inf = math.inf
-GameState = namedtuple('GameState', 'to_move, utility, board, moves')
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption('Tic-Tac-Toe')
-icon = pygame.image.load('assets/icons/tictac.png')
-pygame.display.set_icon(icon)
-pygame.display.update()
-run = True
+os.environ['SDL_VIDEO_CENTERED'] = '0'
 
+inf = math.inf
+res = 96
+grid_size = 3
+a = grid_size
+cross = pygame.image.load('assets/tic_tac_toe/x.png')
+cross = pygame.transform.scale(cross, (int((2 / 3) * res), int((2 / 3) * res)))
+circle = pygame.image.load('assets/tic_tac_toe/o.png')
+circle = pygame.transform.scale(circle, (int((2 / 3) * res), int((2 / 3) * res)))
+screen = pygame.display.set_mode((a * res, a * res))
+GameState = namedtuple('GameState', 'to_move, utility, board, moves')
 
 # _______________________________________________________________
 # MINMAX
@@ -128,8 +130,9 @@ class Game:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    run = False
-                    pygame.quit()
+                    return
+                    # run = False
+                    # pygame.quit()
                 if event.type == pygame.MOUSEBUTTONUP:
                     pass
             pygame.display.update()
@@ -169,7 +172,7 @@ class Game:
                 print('\n')
                 pygame.display.update()
                 if self.terminal_test(state):
-                    time.sleep(3)
+                    time.sleep(2)
                     return self.utility(state, self.to_move(self.initial))
 
 
@@ -238,31 +241,32 @@ def text_format(message, textFont, textSize, textColor):
     newText = newFont.render(message, 0, textColor)
     return newText
 
-
-player1 = query_player
-player2 = minimax_player
-grid_size = 3
-
-res = 96
-
-a = grid_size
-screen = pygame.display.set_mode((a * res, a * res))
-pygame.display.set_caption('Tic-Tac-Toe')
-square = pygame.image.load('assets/tic_tac_toe/square.png')
-square = pygame.transform.scale(square, (res, res))
-cross = pygame.image.load('assets/tic_tac_toe/x.png')
-cross = pygame.transform.scale(cross, (int((2 / 3) * res), int((2 / 3) * res)))
-circle = pygame.image.load('assets/tic_tac_toe/o.png')
-circle = pygame.transform.scale(circle, (int((2 / 3) * res), int((2 / 3) * res)))
-for i in range(grid_size):
-    for j in range(grid_size):
-        screen.blit(square, (i * res, j * res))
-pygame.display.update()
-
-time.sleep(0.5)
-
-
 def tic_tac_toe():
+    pygame.init()
+
+    # font = "assets/fonts/Retro.ttf"
+    # screen = pygame.display.set_mode((800, 684))
+    pygame.display.set_caption('Tic-Tac-Toe')
+    icon = pygame.image.load('assets/icons/tictac.png')
+    pygame.display.set_icon(icon)
+    pygame.display.update()
+    run = True
+
+    player1 = query_player
+    player2 = minimax_player
+
+    pygame.display.set_caption('Tic-Tac-Toe')
+    square = pygame.image.load('assets/tic_tac_toe/square.png')
+    square = pygame.transform.scale(square, (res, res))
+    screen = pygame.display.set_mode((a * res, a * res))
+
+    for i in range(grid_size):
+        for j in range(grid_size):
+            screen.blit(square, (i * res, j * res))
+    pygame.display.update()
+    
+    time.sleep(0.5)
+
     TicTacToe(grid_size, grid_size, grid_size).play_game(player1, player2)
 
 

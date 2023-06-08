@@ -1,32 +1,40 @@
 import pygame
-import towers
+import sys
+from pacman import pacman
+from pong import pong
+from tic_tac_toe import tic_tac_toe
+from main_menu import main_menu
 
 
 def main():
-    background = (0, 0, 0)
-    (width, height) = (900, 800)
+    pygame.mixer.init()
 
-    pygame.init()
-    pygame.display.set_caption("Tower Defense")
-    surface = pygame.display.set_mode((width, height))
+    pygame.display.set_caption("3 IN 1")
+    icon = pygame.image.load('assets/icons/menu.png')
+    pygame.display.set_icon(icon)
 
-    surface.fill(background)
-    running = True
+    menu_sound = pygame.mixer.Sound(f'assets/music/Mega Man X3 - Ending.mp3')
+    pacman_sound = pygame.mixer.Sound(
+        f'assets/music/Pac-man theme remix - By Arsenic1987.mp3')
 
-    weak_tower = towers.WeakTower()
+    while True:
+        menu_sound.play(loops=1)
+        game = main_menu()
 
-    while running:
-        for event in pygame.event.get():
-
-            if event.type == pygame.QUIT:
-                running = False
-
-            elif event.type == pygame.MOUSEBUTTONUP:
-                if event.button == 1:
-                    x, y = pygame.mouse.get_pos()
-                    weak_tower.draw(surface, x, y)
-
-        pygame.display.flip()
+        if game == 0:
+            pygame.quit()
+            sys.exit()
+        elif game == 1:
+            menu_sound.stop()
+            pong()
+        elif game == 2:
+            menu_sound.stop()
+            tic_tac_toe()
+        elif game == 3:
+            menu_sound.stop()
+            pacman_sound.play(loops=1)
+            pacman()
+            pacman_sound.stop()
 
 
 if __name__ == "__main__":
