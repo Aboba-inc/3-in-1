@@ -8,7 +8,7 @@ def pong():
     FONT = pygame.font.SysFont("Consolas", int(WIDTH / 20))
 
     SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption("Pong!")
+    pygame.display.set_caption("Pong")
 
     CLOCK = pygame.time.Clock()
 

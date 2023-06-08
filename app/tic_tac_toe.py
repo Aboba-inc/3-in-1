@@ -10,7 +10,7 @@ inf = math.inf
 GameState = namedtuple('GameState', 'to_move, utility, board, moves')
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Tic-Tac-Toe')
-icon = pygame.image.load('assets/tic_tac_toe/icon.png')
+icon = pygame.image.load('assets/icons/tictac.png')
 pygame.display.set_icon(icon)
 pygame.display.update()
 run = True
