@@ -68,9 +68,9 @@ def pong():
         separator_score_text = FONT.render(str(":"), True, "#E9C46A")
 
         if opponent.y < ball.y:
-            opponent.top += 2
+            opponent.top += 1.5
         if opponent.bottom > ball.y:
-            opponent.bottom -= 2
+            opponent.bottom -= 1.5
 
         ball.x += x_speed * 2
         ball.y += y_speed * 2

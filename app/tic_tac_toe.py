@@ -5,12 +5,12 @@ import time
 from collections import namedtuple
 
 pygame.init()
-font = "app/fonts/Retro.ttf"
+font = "assets/fonts/Retro.ttf"
 inf = math.inf
 GameState = namedtuple('GameState', 'to_move, utility, board, moves')
 screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Tic-Tac-Toe')
-icon = pygame.image.load('app/sprites/icon.png')
+icon = pygame.image.load('assets/tic_tac_toe/icon.png')
 pygame.display.set_icon(icon)
 pygame.display.update()
 run = True
@@ -248,11 +248,11 @@ res = 96
 a = grid_size
 screen = pygame.display.set_mode((a * res, a * res))
 pygame.display.set_caption('Tic-Tac-Toe')
-square = pygame.image.load('app/sprites/square.png')
+square = pygame.image.load('assets/tic_tac_toe/square.png')
 square = pygame.transform.scale(square, (res, res))
-cross = pygame.image.load('app/sprites/x.png')
+cross = pygame.image.load('assets/tic_tac_toe/x.png')
 cross = pygame.transform.scale(cross, (int((2 / 3) * res), int((2 / 3) * res)))
-circle = pygame.image.load('app/sprites/o.png')
+circle = pygame.image.load('assets/tic_tac_toe/o.png')
 circle = pygame.transform.scale(circle, (int((2 / 3) * res), int((2 / 3) * res)))
 for i in range(grid_size):
     for j in range(grid_size):
