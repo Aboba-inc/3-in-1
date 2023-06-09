@@ -11,6 +11,7 @@ def pacman():
 
     pygame.init()
 
+    pygame.display.set_caption("Pacman")
     WIDTH = 900
     HEIGHT = 950
     screen = pygame.display.set_mode([WIDTH, HEIGHT])

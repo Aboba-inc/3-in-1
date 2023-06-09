@@ -1,5 +1,4 @@
 import pygame
-import random
 import math
 import time
 import os
@@ -257,7 +256,7 @@ def tic_tac_toe():
     player1 = query_player
     player2 = minimax_player
 
-    pygame.display.set_caption('Tic-Tac-Toe')
+    pygame.display.set_caption('Tic Tac Toe')
     square = pygame.image.load('assets/tic_tac_toe/square.png')
     square = pygame.transform.scale(square, (res, res))
     screen = pygame.display.set_mode((a * res, a * res))
