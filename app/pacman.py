@@ -541,7 +541,7 @@ def pacman():
 
         def move_pinky(self):
             # r, l, u, d
-            # inky is going to turn left or right whenever advantageous, but only up or down on collision
+            # pinky is going to turn left or right whenever advantageous, but only up or down on collision
             if self.direction == 0:
                 if self.target[0] > self.x_pos and self.turns[0]:
                     self.x_pos += self.speed
